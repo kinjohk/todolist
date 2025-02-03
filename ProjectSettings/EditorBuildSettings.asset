@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TaskList.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/TaskDetail.unity
+    guid: e8af57cc802995d4590e6993ab2431f5
+  - enabled: 1
+    path: Assets/Scenes/Cultivation.unity
+    guid: 1abada5f594cf7a468be3687532164fd
   m_configObjects: {}
