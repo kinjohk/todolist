@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SQLite4Unity3d;
 using System.IO;
+using System.Linq;
 
 using DBTable;
 
@@ -28,7 +29,7 @@ namespace DataBaseService{
                 Debug.LogError($"データベースの初期化に失敗しました: {e.Message}");
             }
 
-            Debug.Log($"データベースが正常に初期化されました: {_databasePath}");
+            //Debug.Log($"データベースが正常に初期化されました: {_databasePath}");
 
         }
 
@@ -41,7 +42,15 @@ namespace DataBaseService{
             }
         }
 
-        public void InsertTask(DataTask task){
+        public void UpdInsTask(DataTask task){
+            if (task.TaskId == 0){
+                InsertTask(task);
+            }else{
+                UpdateTask(task);
+            }
+        }
+
+        private void InsertTask(DataTask task){
             try{
                 _connection.Insert(task);
             }catch(System.Exception e){
@@ -49,8 +58,44 @@ namespace DataBaseService{
             }
         }
 
+        private void UpdateTask(DataTask task){
+            try{
+                _connection.Update(task);
+            }catch(System.Exception e){
+                Debug.LogError($"データの挿入に失敗しました: {e.Message}");
+            }
+        }
+
+        public void DeleteTask(int TaskId){
+            try{
+                _connection.Delete<DataTask>(TaskId);
+            }catch(System.Exception e){
+                Debug.LogError($"データの削除に失敗しました: {e.Message}");
+            }
+        }
+
+        public DataTask GetTask(int TaskId){
+            try{
+                return _connection.Table<DataTask>().Where(t => t.TaskId == TaskId).FirstOrDefault();
+            }catch(System.Exception e){
+                Debug.LogError($"データの取得に失敗しました: {e.Message}");
+            }
+            return null;
+        }
+
+
+        public List<DataTask> GetAllTasks(){
+            try{
+                return _connection.Table<DataTask>().ToList();
+            }catch(System.Exception e){
+                Debug.LogError($"データの取得に失敗しました: {e.Message}");
+            }
+            return null;
+        }
+
 
         public void OnDestroy()
+
         {
             // データベース接続を閉じる
             if (_connection != null)
@@ -58,7 +103,7 @@ namespace DataBaseService{
                 _connection.Close();
                 _connection.Dispose();
             }
-            Debug.Log($"データベースの接続を閉じました。");
+            //Debug.Log($"データベースの接続を閉じました。");
         }
 
 
