@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InitTaskSetting : MonoBehaviour
+[CreateAssetMenu(fileName = "InitTaskSetting", menuName = "InitTaskSetting", order = 1)]
+public class InitTaskSetting : ScriptableObject
 {
-    [SerializeField] public string xxxx;
+    public int TaskId;
 }

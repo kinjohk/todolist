@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MoveScene : MonoBehaviour
 {
-    private string SampleValue;
+    private int SampleValue;
     public void MoveNextScene(string SceneName)
     {
         SceneManager.sceneLoaded += LoadScene;
@@ -18,7 +18,7 @@ public class MoveScene : MonoBehaviour
         // シーン遷移時に呼ばれる
         //移動先に初期設定オブジェクトを持ち、その要素に値をセットする
         var InitSettingObject = GameObject.FindWithTag("InitSettingObject").GetComponent<InitTaskSetting>();
-        InitSettingObject.xxxx = SampleValue;
+        InitSettingObject.TaskId = SampleValue;
 
         // イベントから削除
         SceneManager.sceneLoaded -= LoadScene;
