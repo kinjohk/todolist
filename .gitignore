@@ -112,3 +112,12 @@ crashlytics-build.properties
 # Fungus
 /[Aa]ssets/[Ff]ungus*
 /[Aa]ssets/[Ff]ungusExamples*
+
+#Art
+/[Aa]ssets/[Uu]niGLTF/Examples/*
+/[Aa]ssets/[Uu]niGLTF/TODO/*
+
+#Underwater
+/[Aa]ssets/[Uu]nderwater-Effect/Demo/*
+
+
